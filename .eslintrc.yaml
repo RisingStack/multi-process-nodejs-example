@@ -1,0 +1,47 @@
+---
+  extends: airbnb-base
+  env:
+    node: true
+    mocha: true
+    es6: true
+  parserOptions:
+    sourceType: strict
+  rules:
+    generator-star-spacing:
+      - 2
+      - before: true
+        after: true
+    no-shadow: 0
+    require-yield: 0
+    no-param-reassign: 0
+    comma-dangle:
+      - error
+      - never
+    no-underscore-dangle: 0
+    import/no-extraneous-dependencies:
+      - 2
+      - devDependencies: true
+    import/order:
+      - error
+    func-names: 0
+    no-unused-expressions: 0
+    prefer-arrow-callback: 1
+    no-use-before-define:
+      - 2
+      - functions: false
+    space-before-function-paren:
+      - 2
+      - always
+    max-len:
+      - 2
+      - 120
+      - 2
+    semi:
+      - 2
+      - never
+    strict:
+      - 2
+      - global
+    arrow-parens:
+      - 2
+      - always

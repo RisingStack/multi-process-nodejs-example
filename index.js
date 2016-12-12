@@ -1,3 +1,5 @@
+/* eslint-disable global-require */
+
 'use strict'
 
 const logger = require('winston')
@@ -13,5 +15,8 @@ if (type === 'web') {
 } else if (type === 'social-preprocessor-worker') {
   require('./worker/social-preprocessor')
 } else {
-  throw new Error(`${type} is an unsupported process type. Use one of: 'web', 'twitter-stream-worker', 'social-preprocessor-worker'!`)
+  throw new Error(`
+    ${type} is an unsupported process type. 
+    Use one of: 'web', 'twitter-stream-worker', 'social-preprocessor-worker'!
+  `)
 }

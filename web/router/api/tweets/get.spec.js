@@ -8,7 +8,7 @@ const server = require('../../../server')
 const url = '/api/v1/tweets'
 describe(`GET ${url}`, () => {
   const now = Date.now()
-  let tweets = [{
+  const tweets = [{
     text: 'text',
     tweeter: 'tweeter',
     createdAt: now

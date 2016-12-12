@@ -25,7 +25,8 @@ tortoise
     const { error, value } = joi.validate(msg, messageSchema)
     if (error) {
       logger.warn('Social preprocessor invalid message', { msg, error: error.message })
-      return ack()
+      ack()
+      return
     }
 
     redis.zadd(redis.SET.tweets, value.createdAt.getTime(), JSON.stringify(msg))
