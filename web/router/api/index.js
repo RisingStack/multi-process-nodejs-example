@@ -1,7 +1,7 @@
 'use strict'
 
-const tweets = require('./tweets')
+const v1 = require('./v1')
 
 module.exports = {
-  tweets
+  v1
 }

@@ -3,9 +3,9 @@
 const qs = require('qs')
 
 function parseQueryFactory (options) {
-  return function * parseQuery (next) {
-    this.query = qs.parse(this.querystring, options)
-    yield next
+  return async function parseQuery (ctx, next) {
+    ctx.query = qs.parse(ctx.querystring, options)
+    await next()
   }
 }
 
