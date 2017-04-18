@@ -32,7 +32,7 @@ stream.on('data', (event) => {
       })
     })
     .catch((err) => {
-      logger.error('New tweet received, error happened during message publish to queue', {
+      logger.error('New tweet received, error happened during message publish', {
         queue,
         err
       })
@@ -43,5 +43,4 @@ stream.on('data', (event) => {
 
 stream.on('error', (err) => {
   logger.error('Twitter stream error', err)
-  throw err
 })

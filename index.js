@@ -3,6 +3,20 @@
 'use strict'
 
 const logger = require('winston')
+const semver = require('semver')
+const pkg = require('./package.json')
+
+// validate Node version requirement
+const runtime = {
+  expected: semver.validRange(pkg.engines.node),
+  actual: semver.valid(process.version)
+}
+const valid = semver.satisfies(runtime.actual, runtime.expected)
+if (!valid) {
+  throw new Error(
+    `Expected Node.js version ${runtime.expected}, but found v${runtime.actual}. Please update or change your runtime!`
+  )
+}
 
 const type = process.env.PROCESS_TYPE
 
@@ -15,8 +29,7 @@ if (type === 'web') {
 } else if (type === 'social-preprocessor-worker') {
   require('./worker/social-preprocessor')
 } else {
-  throw new Error(`
-    ${type} is an unsupported process type. 
-    Use one of: 'web', 'twitter-stream-worker', 'social-preprocessor-worker'!
-  `)
+  throw new Error(
+    `${type} is an unsupported process type. Use one of: 'web', 'twitter-stream-worker', 'social-preprocessor-worker'!`
+  )
 }

@@ -22,14 +22,14 @@ tortoise
   .prefetch(1)
   .json()
   .subscribe((msg, ack, nack) => {
-    const { error, value } = joi.validate(msg, messageSchema)
+    const { error, value: tweet } = joi.validate(msg, messageSchema)
     if (error) {
       logger.warn('Social preprocessor invalid message', { msg, error: error.message })
       ack()
       return
     }
 
-    redis.zadd(redis.SET.tweets, value.createdAt.getTime(), JSON.stringify(msg))
+    redis.addTweet(tweet)
       .then(() => {
         logger.debug('Social preprocessor save success', { msg })
         trace.incrementMetric('tweets/saved')
@@ -41,6 +41,7 @@ tortoise
       })
   })
 
+// remove old tweets
 setInterval(() => {
   redis.zremrangebyscore(redis.SET.tweets, 0, Date.now() - config.redis.dataRetention)
 }, 60 * 1000)

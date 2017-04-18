@@ -5,7 +5,7 @@ const winston = require('winston')
 
 const envVarsSchema = joi.object({
   LOGGER_LEVEL: joi.string()
-    .allow(['error', 'warn', 'info', 'verbose', 'debug', 'silly'])
+    .allow(['error', 'warn', 'info', 'verbose', 'debug', 'silly', 'test'])
     .default('info'),
   LOGGER_ENABLED: joi.boolean()
     .truthy('TRUE')
